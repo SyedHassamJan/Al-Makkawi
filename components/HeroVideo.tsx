@@ -20,8 +20,13 @@ function subscribe(cb: () => void) {
   queries.forEach((q) => q.addEventListener("change", cb));
   return () => queries.forEach((q) => q.removeEventListener("change", cb));
 }
+// Visitors with Data Saver on, or on a 2G link, only get the poster.
+const saveData = () => {
+  const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+  return !!c && (c.saveData === true || c.effectiveType === "2g" || c.effectiveType === "slow-2g");
+};
 const getMode = (): Mode =>
-  matchMedia(REDUCED).matches ? "poster" : matchMedia(PHONE).matches ? "mobile" : "desktop";
+  matchMedia(REDUCED).matches || saveData() ? "poster" : matchMedia(PHONE).matches ? "mobile" : "desktop";
 
 export default function HeroVideo() {
   // The server (and reduced-motion visitors) only ever get the poster.
@@ -119,7 +124,9 @@ export default function HeroVideo() {
             src={clip[mode as "desktop" | "mobile"]}
             muted
             playsInline
-            preload="auto"
+            // Only the first clip loads up front; the second waits until the
+            // first is playing so it never competes with it (or the LCP poster).
+            preload={i === 0 || playing ? "auto" : "none"}
             poster={poster.src}
             disablePictureInPicture
             onError={() => setFailed(true)}
