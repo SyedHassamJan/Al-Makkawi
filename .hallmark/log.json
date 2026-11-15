@@ -1,0 +1,44 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "Pilgrim's Brief",
+  "theme": "brand",
+  "axes": "light/roman-serif/warm",
+  "hero": "poster",
+  "nav": "edge-aligned",
+  "footer": "mast",
+  "imagery": "photographs, owner 9, video owner 2",
+  "photos": [
+   "makkah-kaaba",
+   "madinah-green-dome",
+   "dome-of-the-rock",
+   "blue-mosque",
+   "alhambra-castle",
+   "egypt-cairo-mosque",
+   "burj-khalifa-dubai",
+   "bosnia-mostar"
+  ],
+  "entry": "hero-in settle",
+  "fingerprint": "poster/grid/band-split/rows/band-cards/statement-grid/rows/form",
+  "sections": [
+   "poster",
+   "grid",
+   "band split steps",
+   "rows",
+   "band cards",
+   "statement grid",
+   "rows faq",
+   "form band",
+   "footer"
+  ],
+  "signature": "the Kaaba on the owner's own film behind the headline",
+  "waived": [
+   "81",
+   "83"
+  ],
+  "prompt": "Hajj and Umrah travel agency in Birmingham; register interest and enquire",
+  "date": "2026-11-14"
+ }
+]

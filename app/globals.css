@@ -1,0 +1,184 @@
+/* Hallmark · shape: Pilgrim's Brief (the sacred cities, Hajj, Umrah, tours, the promise, questions, the enquiry) · genre: editorial · theme: brand · redesign: full · job: book (register interest, enquire)
+ * paper: oklch(98% 0.009 85) · accent: oklch(76.9% 0.105 81) · display: Fraunces · body: Manrope · hero: Poster · nav: edge-aligned bar, wordmark left, six section links, the phone and Register right · footer: mast, the wordmark over the links, the ATOL notice in full · signature: the Kaaba on the owner's own film behind the headline
+ * hero detail: the owner's two Kaaba clips, crossfaded, the text low and left on a pine scrim
+ * axes: light/roman-serif/warm · posture: Committed (the pine field carries the hero, Hajj, tours and contact bands; gold stays the signal) · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, a film-behind-the-headline opening is a familiar move; kept because the footage is the owner's own and the strongest thing the page has, and the rest leans on type, rows and the tours band */
+/* Hallmark · finish-review: in-thread (no subagent started in this session) · 1 finding · 1 resolved · gap: none */
+/* Hallmark · imagery: photographs, the owner's own 9 (Makkah, Madinah, Al-Aqsa, six tour countries) · video: the owner's two Kaaba clips · no library photos */
+/* Hallmark · dropped "All rights reserved" · 19 names the stock footer line */
+/* Hallmark · dropped the photo frames for madinah-horizon and dome-of-the-rock-arcade (the files stay in public/images) · 83 names the photo share past a third */
+/* Hallmark · dropped the eyebrows "The sacred journey", "Hajj 2027 · Registration open", "Umrah", "Heritage tours", "Why pilgrims choose us", "Our promise", "Questions", "Register your interest", "ATOL protected · Birmingham, UK" · 54 names the eyebrow */
+/* Hallmark · reworded "Register early for Hajj" to "Register early for Hajj 2027" · 54, the eyebrow's fact moved into the heading */
+/* Hallmark · reworded "How booking works" to the three steps as a numbered list without a heading · 58 names the screen budget */
+/* Hallmark · reworded "Care for the most important trip you will take" to "Our promise" (visually hidden), the director's promise set as the statement · 58 names the screen budget */
+/* Hallmark · reworded "Begin your journey" to "Register your interest" · 54, the eyebrow becomes the heading; craft refuses "journey" */
+/* Hallmark · reworded "Hajj and Umrah from Birmingham" to the same words under the Talbiyah, both inside the h1 · 58, the hero holds a headline, one sentence and its actions */
+/* Hallmark · reworded "To make your pilgrimage easier, more comfortable and within reach" from a heading to the section's statement, kept word for word · 58 names the screen budget */
+/* Hallmark · reworded "director-title" to "why-title" · the promise and the reasons merged into one section */
+/* Hallmark · dismissed 58 · the 213-word window counts the six collapsed FAQ answers, which are closed details; the visible window holds about 50 words, and the 136-word window at the foot carries the ATOL notice, legal text kept verbatim */
+/* Hallmark · waive 83 · six tours background layers at opacity 0 until a card is active, plus six country card photographs · the owner asked for each tours card to carry its own country photograph and for the band to swap behind it */
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css" layer(base);
+
+@utility btn {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  border-radius: var(--radius-pill);
+  padding-inline: var(--space-lg);
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-short) var(--ease-out),
+    border-color var(--dur-short) var(--ease-out),
+    transform var(--dur-micro) var(--ease-out);
+  &:active {
+    transform: translateY(1px);
+  }
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+  &[aria-busy="true"] {
+    cursor: progress;
+  }
+}
+
+@layer components {
+  /* The one primary: gold with ink text, on paper or on the pine field. */
+  .btn-primary {
+    @apply btn bg-accent text-accent-ink hover:bg-accent-soft;
+  }
+  /* The quiet second action, only on the pine field. */
+  .btn-quiet {
+    @apply btn border border-on-field-2 text-on-field hover:border-on-field hover:bg-field-3;
+  }
+
+  /* Dark bands swap their ink and their focus ring in the same rule (41, 26a). */
+  .on-field {
+    --color-focus: var(--color-accent-soft);
+    background-color: var(--color-field);
+    color: var(--color-on-field);
+  }
+  .on-field-deep {
+    --color-focus: var(--color-accent-soft);
+    background-color: var(--color-field-2);
+    color: var(--color-on-field);
+  }
+
+  /* Pointed arch frame for the three sacred-city photographs. */
+  .arch {
+    border-radius: var(--radius-pill) var(--radius-pill) var(--radius-photo) var(--radius-photo);
+  }
+
+  /* Morocco has no photograph yet: a tinted field the owner's photo replaces. */
+  .photo-placeholder {
+    background: linear-gradient(160deg, var(--color-field-3), var(--color-field-2));
+  }
+
+  .hero-scrim {
+    background:
+      linear-gradient(to top, var(--color-scrim) 0%, var(--color-scrim-soft) 45%, var(--color-scrim-clear) 80%),
+      linear-gradient(to right, var(--color-scrim-soft), var(--color-scrim-clear) 70%);
+  }
+  .header-scrim {
+    background: linear-gradient(to bottom, var(--color-scrim) 0%, var(--color-scrim-soft) 60%, var(--color-scrim-clear) 100%);
+  }
+  /* Shade the lower part of a tour card so its name reads over the photograph. */
+  .card-shade::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(to top, var(--color-scrim) 0%, var(--color-scrim-soft) 55%, var(--color-scrim-clear) 100%);
+  }
+
+  /* Pressed and disabled, for every control (26b). */
+  .btn-primary:active,
+  .btn-quiet:active {
+    transform: translateY(1px);
+  }
+  button:disabled,
+  input:disabled,
+  select:disabled,
+  textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  .band-scrim {
+    background: linear-gradient(to right, var(--color-scrim), var(--color-scrim-soft));
+  }
+}
+
+/* ── Motion ───────────────────────────────────────────────────────────
+   One reveal (sections settle in once, photos ease out of a slight zoom
+   as they arrive), one hero entrance, the tours crossfade. The hidden
+   state only exists under .js, which layout.tsx adds before paint, so the
+   page is complete with scripting off; reduced motion shows end states. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.7s var(--ease-out),
+      transform 0.7s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 60ms);
+  }
+  .js .reveal.is-shown {
+    opacity: 1;
+    transform: none;
+  }
+  .js .reveal .slow-zoom img {
+    transform: scale(1.05);
+    transition: transform 2.4s var(--ease-out);
+  }
+  .js .reveal.is-shown .slow-zoom img {
+    transform: none;
+  }
+
+  .hero-in {
+    animation: hero-in 0.8s var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
+  }
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  .tour-layer img {
+    transform: scale(1.04);
+    transition: transform 4s var(--ease-out);
+  }
+  .tour-layer[data-active="true"] img {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal .slow-zoom img,
+  .tour-layer img {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-in {
+    animation: none;
+  }
+}
